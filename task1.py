@@ -46,6 +46,7 @@ df['price (in dollars)'].hist(bins=30, edgecolor='black')
 plt.title('Distribution of Prices')
 plt.xlabel('Price (in dollars)')
 plt.ylabel('Frequency')
+plt.xlim(0,2000)
 plt.show()
 
 plt.figure(figsize=(10, 6))
@@ -53,6 +54,7 @@ df['minimum_stay'].hist(bins=30, edgecolor='black')
 plt.title('Distribution of Minimum Stay')
 plt.xlabel('Minimum Stay (nights)')
 plt.ylabel('Frequency')
+plt.xlim(0,400)
 plt.show()
 
 plt.figure(figsize=(10, 6))
@@ -60,6 +62,7 @@ df['no_of_reviews'].hist(bins=30, edgecolor='black')
 plt.title('Distribution of Number of Reviews')
 plt.xlabel('Number of Reviews')
 plt.ylabel('Frequency')
+plt.xlim(0,400)
 plt.show()
 
 # Scatter plot between price and number of reviews
@@ -74,7 +77,7 @@ plt.show()
 plt.figure(figsize=(12, 8))
 
 # Select only numeric columns for correlation matrix
-numeric_df = df_encoded.select_dtypes(include=['float64', 'int64'])
+numeric_df = df.drop(['borough' , 'area'] , axis='columns').select_dtypes(include=['float64', 'int64'])
 correlation_matrix = numeric_df.corr()
 
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
